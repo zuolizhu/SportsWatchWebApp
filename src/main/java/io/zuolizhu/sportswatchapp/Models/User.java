@@ -23,10 +23,9 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String password, List<Team> list) {
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        this.favoriteTeams = list;
     }
 
     public Long getUserID() {

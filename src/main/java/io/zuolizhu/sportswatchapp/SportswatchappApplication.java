@@ -20,7 +20,7 @@ public class SportswatchappApplication {
 	ApplicationRunner init(UserRepository userRepository) {
 
 		return args -> {
-			User user = new User("Fake User", "BadPassword", null);
+			User user = new User("Fake User", "BadPassword");
 			userRepository.save(user);
 			userRepository.findAll().forEach(System.out::println);
 		};

@@ -1,7 +1,9 @@
 package io.zuolizhu.sportswatchapp.Controllers;
 
 import io.zuolizhu.sportswatchapp.Models.Team;
+import io.zuolizhu.sportswatchapp.Models.User;
 import io.zuolizhu.sportswatchapp.Services.TeamService;
+import io.zuolizhu.sportswatchapp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ import java.util.List;
 public class SelectteamspageController {
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/selectteams")
     public String teamsSelection(Model model) {
@@ -37,12 +42,19 @@ public class SelectteamspageController {
         String selectedteamsID[] = formData.split(",");
         List<Team> selectedTeams = new ArrayList<>();
 
+        // Save selected teams into a temp list
         for (String s: selectedteamsID) {
             Long teamID = Long.parseLong(s);
             selectedTeams.add(teamService.findByTeamID(teamID));
         }
+        System.out.println("Selected :" + selectedTeams.toString());
 
-        System.out.println(selectedTeams.toString());
+        // Update selected teams in user repo
+        User user = userService.findByUserID(1L);
+        userService.updateFavoriteTeams(user, selectedTeams);
+
+        System.out.println(user.toString());
+
         return "redirect:";
     }
 }
