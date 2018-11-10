@@ -6,11 +6,12 @@ import javax.persistence.*;
 @Table(name = "teams")
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teamID;
     private String teamName;
     private String teamNameAbbreviation;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
     public Team() {
     }
 

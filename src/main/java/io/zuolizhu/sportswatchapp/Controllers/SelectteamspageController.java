@@ -1,7 +1,6 @@
 package io.zuolizhu.sportswatchapp.Controllers;
 
 import io.zuolizhu.sportswatchapp.Models.Team;
-import io.zuolizhu.sportswatchapp.Repositories.TeamRepository;
 import io.zuolizhu.sportswatchapp.Services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +17,14 @@ public class SelectteamspageController {
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private TeamRepository teamRepository;
-
     @GetMapping("/selectteams")
     public String teamsSelection(Model model) {
+
+        // Generate a team list for user to pickup
+        teamService.create(new Team(1L, "Washington Wizards", "WW"));
+        teamService.create(new Team(2L, "Miami Heat", "MH"));
+        teamService.create(new Team(3L, "Los Angeles Clippers", "LAC"));
+
         List<Team> teams = teamService.findAll();
         model.addAttribute("teams", teams);
         return "selectteams";
@@ -30,8 +32,6 @@ public class SelectteamspageController {
 
     @PostMapping("/selectteams")
     public String selectteamsFormHandle(@RequestParam String formData) {
-        // clean existing record
-//        teamRepository.deleteAll();
 
         // Handle returned value from form
         String selectedteamsID[] = formData.split(",");
@@ -39,12 +39,9 @@ public class SelectteamspageController {
 
         for (String s: selectedteamsID) {
             Long teamID = Long.parseLong(s);
-            selectedTeams.add(teamService.findById(teamID));
+            selectedTeams.add(teamService.findByTeamID(teamID));
         }
 
-        for (Team t : selectedTeams) {
-            teamRepository.save(t);
-        }
         System.out.println(selectedTeams.toString());
         return "redirect:";
     }

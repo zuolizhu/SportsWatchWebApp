@@ -1,27 +1,32 @@
 package io.zuolizhu.sportswatchapp.Models;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
     private String userName;
     private String password;
+    private boolean admin;
 
-    @OneToMany(mappedBy = "")
-    private Set<Team> favoriteTeams = new HashSet<>();
+    // attributes below use to connect with Team entity
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private List<Team> favoriteTeams = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Long userID, String userName) {
-        this.userID = userID;
+    public User(String userName, String password, List<Team> list) {
         this.userName = userName;
+        this.password = password;
+        this.favoriteTeams = list;
     }
 
     public Long getUserID() {
@@ -48,11 +53,19 @@ public class User {
         this.password = password;
     }
 
-    public Set<Team> getFavoriteTeams() {
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public List<Team> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setFavoriteTeams(Set<Team> favoriteTeams) {
+    public void setFavoriteTeams(List<Team> favoriteTeams) {
         this.favoriteTeams = favoriteTeams;
     }
 
