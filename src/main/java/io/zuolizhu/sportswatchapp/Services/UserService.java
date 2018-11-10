@@ -8,4 +8,5 @@ public interface UserService {
     List<User> findAll();
     User findByUserID(Long userID);
     void addAUser(User user);
+    void updateUserFavoriteTeams(User user);
 }

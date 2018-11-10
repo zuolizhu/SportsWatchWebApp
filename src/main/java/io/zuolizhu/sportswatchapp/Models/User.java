@@ -2,7 +2,6 @@ package io.zuolizhu.sportswatchapp.Models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,11 +13,7 @@ public class User {
     private String password;
     private boolean admin;
 
-    // attributes below use to connect with Team entity
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "user")
-    private List<Team> favoriteTeams = new ArrayList<>();
+    private ArrayList<Long> favoriteTeams;
 
     public User() {
     }
@@ -60,11 +55,11 @@ public class User {
         this.admin = admin;
     }
 
-    public List<Team> getFavoriteTeams() {
+    public ArrayList<Long> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setFavoriteTeams(List<Team> favoriteTeams) {
+    public void setFavoriteTeams(ArrayList<Long> favoriteTeams) {
         this.favoriteTeams = favoriteTeams;
     }
 

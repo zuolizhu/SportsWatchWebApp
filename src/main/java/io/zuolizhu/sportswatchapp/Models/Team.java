@@ -10,8 +10,7 @@ public class Team {
     private Long teamID;
     private String teamName;
     private String teamNameAbbreviation;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+
     public Team() {
     }
 

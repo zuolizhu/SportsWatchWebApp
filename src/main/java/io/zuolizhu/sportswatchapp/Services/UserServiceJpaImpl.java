@@ -31,4 +31,9 @@ public class UserServiceJpaImpl implements UserService {
         this.userRepository.save(user);
     }
 
+    @Override
+    public void updateUserFavoriteTeams(User user) {
+        this.userRepository.save(user);
+    }
+
 }

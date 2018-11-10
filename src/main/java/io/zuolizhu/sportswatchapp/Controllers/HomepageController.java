@@ -2,6 +2,7 @@ package io.zuolizhu.sportswatchapp.Controllers;
 
 import io.zuolizhu.sportswatchapp.Models.Team;
 import io.zuolizhu.sportswatchapp.Models.User;
+import io.zuolizhu.sportswatchapp.Services.TeamService;
 import io.zuolizhu.sportswatchapp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class HomepageController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TeamService teamService;
+
     @GetMapping("/")
     public String homepage(Model model) {
 
@@ -24,9 +28,17 @@ public class HomepageController {
         model.addAttribute("user", user);
 
         // Get user's favorite teams list
-        List<Team> testList = new ArrayList<>();
-        testList.add(new Team(6L, "Albany Great Dane", "AGD"));
-        model.addAttribute("teams", testList);
+        List<Team> userFavoriteTeams = new ArrayList<>();
+        if (!user.getFavoriteTeams().isEmpty()) {
+            for (int i = 0; i < user.getFavoriteTeams().size(); i++) {
+                userFavoriteTeams.add(teamService.findByTeamID(user.getFavoriteTeams().get(i)));
+            }
+        }
+
+        //
+        if (!userFavoriteTeams.isEmpty()) {
+            model.addAttribute("teams", userFavoriteTeams);
+        }
 
         return "homepage";
     }
