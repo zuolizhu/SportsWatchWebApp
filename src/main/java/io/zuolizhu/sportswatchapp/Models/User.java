@@ -12,7 +12,6 @@ public class User {
     private String userName;
     private String password;
     private boolean admin;
-
     private ArrayList<Long> favoriteTeams;
 
     public User() {
@@ -21,6 +20,10 @@ public class User {
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+        this.admin = false;
+        ArrayList<Long> defaultTeams = new ArrayList<>();
+        defaultTeams.add(0L);
+        this.favoriteTeams = defaultTeams;
     }
 
     public Long getUserID() {

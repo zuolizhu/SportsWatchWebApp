@@ -18,7 +18,6 @@ public class SportswatchappApplication {
 	// Add a dummy user below
 	@Bean
 	ApplicationRunner init(UserRepository userRepository) {
-
 		return args -> {
 			User user = new User("Fake User", "BadPassword");
 			userRepository.save(user);

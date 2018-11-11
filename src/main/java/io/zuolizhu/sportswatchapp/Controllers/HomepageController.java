@@ -27,19 +27,19 @@ public class HomepageController {
         User user = userService.findByUserID(1L);
         model.addAttribute("user", user);
 
-        // Get user's favorite teams list
+        // Get user's favorite teams id list
         List<Team> userFavoriteTeams = new ArrayList<>();
-        if (!user.getFavoriteTeams().isEmpty()) {
-            for (int i = 0; i < user.getFavoriteTeams().size(); i++) {
-                userFavoriteTeams.add(teamService.findByTeamID(user.getFavoriteTeams().get(i)));
+        ArrayList<Long> teamIDs = user.getFavoriteTeams();
+
+        // Prevent empty list cause crash
+        // There is no team with teamID 0L
+        if (!(teamIDs.get(0) == 0L)) {
+            for (Long i : teamIDs) {
+                userFavoriteTeams.add(teamService.findByTeamID(i));
             }
         }
 
-        //
-        if (!userFavoriteTeams.isEmpty()) {
-            model.addAttribute("teams", userFavoriteTeams);
-        }
-
+        model.addAttribute("teams", userFavoriteTeams);
         return "homepage";
     }
 }
