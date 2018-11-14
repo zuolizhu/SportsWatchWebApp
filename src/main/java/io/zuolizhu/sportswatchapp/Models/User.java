@@ -1,7 +1,9 @@
 package io.zuolizhu.sportswatchapp.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,8 +15,9 @@ public class User {
     private String userName;
     private String password;
     private boolean admin;
-    private Set<Team> favoriteTeams = new HashSet<>();
-    private Set<Role> role;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Team> favoriteTeams = new ArrayList<>();
 
     public User() {
     }
@@ -57,11 +60,11 @@ public class User {
         this.admin = admin;
     }
 
-    public Set<Team> getFavoriteTeams() {
+    public List<Team> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setFavoriteTeams(Set<Team> favoriteTeams) {
+    public void setFavoriteTeams(List<Team> favoriteTeams) {
         this.favoriteTeams = favoriteTeams;
     }
 
@@ -71,6 +74,8 @@ public class User {
                 "userID=" + userID +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", admin=" + admin +
+                ", favoriteTeams=" + favoriteTeams +
                 '}';
     }
 }

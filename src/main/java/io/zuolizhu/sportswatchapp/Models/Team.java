@@ -10,7 +10,6 @@ public class Team {
     private Long teamID;
     private String teamName;
     private String teamNameAbbreviation;
-
     public Team() {
     }
 

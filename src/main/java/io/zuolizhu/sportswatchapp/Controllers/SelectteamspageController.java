@@ -41,21 +41,16 @@ public class SelectteamspageController {
 
     @PostMapping("/selectteams")
     public String selectteamsFormHandle(@RequestParam String formData) {
-
         // Handle returned value from form
         String selectedteamsID[] = formData.split(",");
-        ArrayList<Long> selectedTeamsID = new ArrayList<>();
-
+        List<Team> favoriteTeams = new ArrayList<>();
         // Save selected teams into a temp list
         for (String s: selectedteamsID) {
             Long teamID = Long.parseLong(s);
-            selectedTeamsID.add(teamID);
+            favoriteTeams.add(teamService.findByTeamID(teamID));
         }
-
         // Update selected teams in user repo
-        User user = userService.findByUserID(1L);
-        user.setFavoriteTeams(selectedTeamsID);
-        userService.updateUserFavoriteTeams(user);
+        userService.updateUserFavoriteTeams(1L, favoriteTeams);
       return "redirect:";
     }
 }
