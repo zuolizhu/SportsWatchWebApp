@@ -1,5 +1,6 @@
 package io.zuolizhu.sportswatchapp.Services;
 
+import io.zuolizhu.sportswatchapp.Models.Team;
 import io.zuolizhu.sportswatchapp.Models.User;
 import io.zuolizhu.sportswatchapp.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,11 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    public void updateUserFavoriteTeams(User user) {
+    public void updateUserFavoriteTeams(Long userID, List<Team> teams) {
+        User user = findByUserID(userID);
+        user.setFavoriteTeams(teams);
         this.userRepository.save(user);
     }
+
 
 }
