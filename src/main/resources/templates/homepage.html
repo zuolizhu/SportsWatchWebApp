@@ -5,6 +5,38 @@
     <title>Sports Watch</title>
 </head>
 <body>
+    <!--#### Facebook Login ####-->
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '430558230800886',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v3.2'
+          });
+
+          FB.getLoginStatus(function(response) {statusChangeCallback(response);});
+        };
+      
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function statusChangeCallback(res) {
+          if(res.status === 'connected') {
+            console.log('Logged in and authed');
+          } else {
+            console.log('Not auth');
+          }
+        }
+      </script>
+    <!--#### Facebook login end ####-->
+
+
 <header th:replace="layout :: site-header" />
 
     <div class="container">
