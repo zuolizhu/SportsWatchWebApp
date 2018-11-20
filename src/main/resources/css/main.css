@@ -1,0 +1,11 @@
+#fb-btn {
+    margin-top: 20px;
+}
+
+#profile, #logout {
+    display: none;
+}
+
+li:nth-child(6) {
+    list-style-type: none; 
+ }
