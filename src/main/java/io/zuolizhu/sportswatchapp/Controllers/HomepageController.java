@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class HomepageController {
     private TeamService teamService;
 
     @GetMapping("/")
-    public String homepage(Model model) {
+    public String homepage(Model model, HttpSession httpSession) {
 
         // Find user by userID
         User user = userService.findByUserID(1L);
@@ -30,6 +31,7 @@ public class HomepageController {
         // Get user's favorite teams id list
         List<Team> userFavoriteTeams = userService.findByUserID(1L).getFavoriteTeams();
         model.addAttribute("teams", userFavoriteTeams);
+        System.out.println("Interesting " + httpSession.getId());
         return "homepage";
     }
 }
