@@ -1,10 +1,14 @@
-package io.zuolizhu.sportswatchapp.Models.API;
+package io.zuolizhu.sportswatchapp.Models.API.CurrentSeason;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class CurrentSeason {
+import java.util.ArrayList;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Currentseason {
     private String lastUpdatedOn;
-    private Season season;
+    private ArrayList<Season> season;
 
-    public CurrentSeason() {
+    public Currentseason() {
     }
 
     public String getLastUpdatedOn() {
@@ -15,17 +19,17 @@ public class CurrentSeason {
         this.lastUpdatedOn = lastUpdatedOn;
     }
 
-    public Season getSeason() {
+    public ArrayList<Season> getSeason() {
         return season;
     }
 
-    public void setSeason(Season season) {
+    public void setSeason(ArrayList<Season> season) {
         this.season = season;
     }
 
     @Override
     public String toString() {
-        return "CurrentSeason{" +
+        return "Currentseason{" +
                 "lastUpdatedOn='" + lastUpdatedOn + '\'' +
                 ", season=" + season +
                 '}';

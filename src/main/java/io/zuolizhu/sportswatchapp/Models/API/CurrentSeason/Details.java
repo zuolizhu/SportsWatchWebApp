@@ -1,5 +1,7 @@
-package io.zuolizhu.sportswatchapp.Models.API;
+package io.zuolizhu.sportswatchapp.Models.API.CurrentSeason;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Details {
     private String name;
     private String slug;

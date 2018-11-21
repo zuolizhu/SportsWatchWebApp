@@ -1,11 +1,13 @@
-package io.zuolizhu.sportswatchapp.Models.API;
+package io.zuolizhu.sportswatchapp.Models.API.CurrentSeason;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class TeamStat {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PlayerStat {
     private String category;
     private String name;
     private String abbreviation;
 
-    public TeamStat() {
+    public PlayerStat() {
     }
 
     public String getCategory() {
@@ -30,5 +32,14 @@ public class TeamStat {
 
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerStat{" +
+                "category='" + category + '\'' +
+                ", name='" + name + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
+                '}';
     }
 }
