@@ -92,11 +92,11 @@
 
     <div class="container">
         <!--#### Facebook login button start ####-->
-        <fb:login-button 
+        <!-- <fb:login-button 
         id="fb-btn"
         scope="public_profile,email"
         onlogin="checkLoginState();">
-        </fb:login-button>
+        </fb:login-button> -->
         <!--#### Facebook login button end ####-->
 
         <!--#### Facebook logout button start ####-->
@@ -110,6 +110,21 @@
         <div id="profile"></div>
     </div>
     <!--#### Facebook info end ####-->
+
+
+
+    <form action="/login" th:action="@{/login}" th:object="${login}" method="post">
+
+        <!--#### Facebook login button start ####-->
+        <fb:login-button 
+        id="fb-btn"
+        scope="public_profile,email"
+        onlogin="checkLoginState();">
+        </fb:login-button>
+        <!--#### Facebook login button end ####-->
+
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
 
 
     <div class="container">
