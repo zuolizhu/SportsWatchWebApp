@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
     @GetMapping("/login")
@@ -17,9 +19,11 @@ public class LoginController {
     @PostMapping("/login")
     public ModelAndView userLogin(
             @RequestParam("userID") String userID,
-            @RequestParam("userName") String userName
+            @RequestParam("userName") String userName,
+            HttpSession session
     ) {
         System.out.println("Backend get: " + userID + " -- " + userName);
+        session.setAttribute("userID", userID);
         return new ModelAndView("redirect:");
     }
 }

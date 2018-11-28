@@ -25,12 +25,12 @@ public class HomepageController {
     public String homepage(Model model) {
 
         // Find user by userID
-        User user = userService.findByUserID(1L);
-        model.addAttribute("user", user);
+//        User user = userService.findByUserID(1L);
+//        model.addAttribute("user", user);
 
         // Get user's favorite teams id list
-        List<Team> userFavoriteTeams = userService.findByUserID(1L).getFavoriteTeams();
-        model.addAttribute("teams", userFavoriteTeams);
+//        List<Team> userFavoriteTeams = userService.findByUserID(1L).getFavoriteTeams();
+//        model.addAttribute("teams", userFavoriteTeams);
         return "homepage";
     }
 }

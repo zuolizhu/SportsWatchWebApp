@@ -13,15 +13,4 @@ public class SportswatchappApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SportswatchappApplication.class, args);
 	}
-
-
-	// Add a dummy user below
-	@Bean
-	ApplicationRunner init(UserRepository userRepository) {
-		return args -> {
-			User user = new User("Fake User", "BadPassword");
-			userRepository.save(user);
-			userRepository.findAll().forEach(System.out::println);
-		};
-	}
 }

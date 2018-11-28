@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,10 @@ public class SelectteamspageController {
     private UserRepository userRepository;
 
     @GetMapping("/selectteams")
-    public String teamsSelection(Model model) {
-
+    public String teamsSelection(Model model, HttpSession session) {
+        if (session.getAttribute("userID") == null) {
+            return "redirect:/login";
+        }
         // Generate a team list for user to pickup
         teamService.create(new Team(1L, "Washington Wizards", "WW"));
         teamService.create(new Team(2L, "Miami Heat", "MH"));

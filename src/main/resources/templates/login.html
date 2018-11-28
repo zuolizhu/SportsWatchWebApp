@@ -51,22 +51,10 @@
                     $("#userID").val(res.id);
                     $("#userName").val(res.name);
                     $("#loginForm").submit();
-                    buildProfile(res);
                 }
             })
         }
-
-        function buildProfile(user) {
-            let profile = `
-                <h3>${user.name}</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">User ID: ${user.id}</li>
-                    <li class="list-group-item">User Email: ${user.email}</li>
-                </ul>
-            `;
-            document.getElementById('profile').innerHTML = profile;
-        }
-
+        
         function setElements(isLoggedIn) {
             if(isLoggedIn) {
                 document.getElementById('logout').style.display='block';
@@ -99,13 +87,6 @@
         <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
         <!--#### Facebook logout button end ####-->
     </div>
-
-    <!--#### Facebook info start ####-->
-    <div class="container">
-        <h3 id="heading">Log in to view your profile</h3>
-        <div id="profile"></div>
-    </div>
-    <!--#### Facebook info end ####-->
 
     <!--#### Facebook login button start ####-->
     <fb:login-button 
