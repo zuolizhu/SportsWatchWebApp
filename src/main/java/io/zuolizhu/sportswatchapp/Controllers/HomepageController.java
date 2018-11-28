@@ -22,7 +22,7 @@ public class HomepageController {
     private TeamService teamService;
 
     @GetMapping("/")
-    public String homepage(Model model) {
+    public String homepage(Model model, HttpSession session) {
 
         // Find user by userID
 //        User user = userService.findByUserID(1L);
@@ -31,6 +31,7 @@ public class HomepageController {
         // Get user's favorite teams id list
 //        List<Team> userFavoriteTeams = userService.findByUserID(1L).getFavoriteTeams();
 //        model.addAttribute("teams", userFavoriteTeams);
+        System.out.println(session.getAttribute("userID"));
         return "homepage";
     }
 }

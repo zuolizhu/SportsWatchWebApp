@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     @GetMapping("/login")
-    public ModelAndView loginpageAccess() {
+    public ModelAndView loginpageAccess(HttpSession session) {
+        System.out.println("Wait WAT??" + session.getAttribute("userID"));
         return new ModelAndView("login");
     }
 
@@ -24,6 +25,7 @@ public class LoginController {
     ) {
         System.out.println("Backend get: " + userID + " -- " + userName);
         session.setAttribute("userID", userID);
+        System.out.println(session.getAttribute("userID"));
         return new ModelAndView("redirect:");
     }
 }
