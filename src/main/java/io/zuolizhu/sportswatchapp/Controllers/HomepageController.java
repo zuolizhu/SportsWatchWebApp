@@ -1,7 +1,5 @@
 package io.zuolizhu.sportswatchapp.Controllers;
 
-import io.zuolizhu.sportswatchapp.Models.Team;
-import io.zuolizhu.sportswatchapp.Models.User;
 import io.zuolizhu.sportswatchapp.Services.TeamService;
 import io.zuolizhu.sportswatchapp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HomepageController {
@@ -31,7 +27,7 @@ public class HomepageController {
         // Get user's favorite teams id list
 //        List<Team> userFavoriteTeams = userService.findByUserID(1L).getFavoriteTeams();
 //        model.addAttribute("teams", userFavoriteTeams);
-        System.out.println(session.getAttribute("userID"));
+//        System.out.println(session.getAttribute("userID"));
         return "homepage";
     }
 }
