@@ -10,9 +10,15 @@
 
 <div class="container">
     <h2>Choose your favorite teams</h2>
-    <form method="post">
+    <!-- <form method="post">
         <select class="js-example-basic-multiple" name="formData" multiple="multiple" style="width: 60%">
             <option th:each="t : ${teams}" th:value="${t.teamID}" th:text="${t.teamName}"></option>
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+    <form method="post">
+        <select class="js-example-basic-multiple" name="formData" multiple="multiple" style="width: 60%">
+            <option th:each="t : ${teams}" th:value="${t.teamID}" th:text="${t.City} + ' ' + ${t.Name}"></option>
         </select>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

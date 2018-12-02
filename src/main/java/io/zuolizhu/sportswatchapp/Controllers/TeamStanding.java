@@ -1,4 +1,4 @@
-package io.zuolizhu.sportswatchapp.Models.APIModel;
+package io.zuolizhu.sportswatchapp.Controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
