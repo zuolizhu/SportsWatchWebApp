@@ -4,6 +4,7 @@ import io.zuolizhu.sportswatchapp.Models.User;
 import io.zuolizhu.sportswatchapp.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +18,7 @@ public class AdminPanelController {
     private UserRepository userRepository;
 
     @GetMapping("/admindash")
-    public ModelAndView adminDashboard(HttpSession session) {
+    public ModelAndView adminDashboard(HttpSession session, Model model) {
         if (session.getAttribute("adminEmail") != null) {
             String accessEmail = session.getAttribute("adminEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
@@ -28,8 +29,9 @@ public class AdminPanelController {
                 }
             }
         }
-        System.out.println("Null session");
-        return new ModelAndView("redirect:adminlogin");
+        String errorMessage = "Invalid session";
+        model.addAttribute("errorMessage", errorMessage);
+        return new ModelAndView("error");
     }
 
     @GetMapping("/changeStatus")
