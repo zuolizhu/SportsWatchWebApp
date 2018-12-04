@@ -2,6 +2,8 @@ package io.zuolizhu.sportswatchapp.Controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.zuolizhu.sportswatchapp.Repositories.TeamRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,9 @@ import java.util.HashMap;
 
 @Controller
 public class TeamListController {
+    @Autowired
+    private TeamRepository teamRepository;
+
     @GetMapping("/allteams")
     public ModelAndView getTeams() {
         ModelAndView allTeams = new ModelAndView("allteams");
@@ -92,6 +97,7 @@ public class TeamListController {
             e.printStackTrace();
         }
         teamInfo.addObject("gameDetails", gameDetails);
+        teamInfo.addObject("teamDetail", teamRepository.findTeamByTeamID(Integer.parseInt(teamID)));
         return teamInfo;
     }
 }

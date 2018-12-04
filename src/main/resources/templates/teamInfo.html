@@ -8,7 +8,10 @@
     <div th:replace="layout :: facebook-API" />
     <header th:replace="layout :: site-header" />
     <div class="container">
-        <p>Game log</p>
+        <div>
+            <h3>Team: <span th:text="${teamDetail.city} +' ' + ${teamDetail.teamName}"></span></h3>
+        </div>
+        <p>Wins & Losses</p>
         <table class="table">
             <thead>
                 <tr>
@@ -25,6 +28,10 @@
                     <td th:text="${gameDetail.get('awayTeam')}" >  </td>
                 </tr>
         </table>
+        <div>
+            <p>Add this team to your favorite</p>
+            <a th:href="@{~/addtofavorite?id=} + ${teamDetail.teamID}">Add</a>
+        </div>
     </div>
     <footer th:replace="layout :: site-footer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

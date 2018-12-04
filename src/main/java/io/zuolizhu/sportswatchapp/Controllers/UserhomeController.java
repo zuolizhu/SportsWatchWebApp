@@ -29,7 +29,6 @@ public class UserhomeController {
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
                 User currentUser = userRepository.findByUserEmail(accessEmail).get();
                 ModelAndView userHome = new ModelAndView("userhome");
-                System.out.println("UserInfo: " + currentUser.toString());
                 userHome.addObject("userInfo", currentUser);
                 if (getUserFavoriteTeams(currentUser.getFavoriteTeams()) != null) {
                     userHome.addObject("teamsInfo", getUserFavoriteTeams(currentUser.getFavoriteTeams()));

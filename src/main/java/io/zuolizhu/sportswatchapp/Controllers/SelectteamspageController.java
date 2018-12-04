@@ -62,8 +62,33 @@ public class SelectteamspageController {
                 return new ModelAndView("redirect:userhome");
             }
         }
-
         String errorMessage = "Invalid POST request, please login before choosing teams!";
+        model.addAttribute("errorMessage", errorMessage);
+        return new ModelAndView("error");
+    }
+
+    @GetMapping("/addtofavorite")
+    public ModelAndView addTeamToFavorite(@RequestParam("id") String teamID, HttpSession session, Model model) {
+        if (session.getAttribute("userEmail") != null) {
+            String accessEmail = session.getAttribute("userEmail").toString();
+            if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                User currentUser = userRepository.findByUserEmail(accessEmail).get();
+                if (currentUser.getFavoriteTeams() != null) {
+                    ArrayList<Integer> oldFavTeams = currentUser.getFavoriteTeams();
+                    oldFavTeams.add(Integer.parseInt(teamID));
+                    currentUser.setFavoriteTeams(oldFavTeams);
+                    userRepository.save(currentUser);
+                } else {
+                    ArrayList<Integer> newFavTeams = new ArrayList<>();
+                    newFavTeams.add(Integer.parseInt(teamID));
+                    currentUser.setFavoriteTeams(newFavTeams);
+                    userRepository.save(currentUser);
+                }
+                return new ModelAndView("redirect:userhome");
+            }
+        }
+
+        String errorMessage = "Invalid request, please login before adding teams!";
         model.addAttribute("errorMessage", errorMessage);
         return new ModelAndView("error");
     }
