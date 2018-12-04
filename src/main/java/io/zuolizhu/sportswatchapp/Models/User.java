@@ -13,18 +13,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
     private String userName;
-    private String password;
+    private String userEmail;
     private boolean admin;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Team> favoriteTeams = new ArrayList<>();
-
-    public User() {
+    public ArrayList<String> getFavoriteTeams() {
+        return favoriteTeams;
     }
 
-    public User(String userName, String password) {
+    public void setFavoriteTeams(ArrayList<String> favoriteTeams) {
+        this.favoriteTeams = favoriteTeams;
+    }
+
+    private ArrayList<String> favoriteTeams;
+
+    public User(Long userID, String userName, String userEmail) {
+        this.userID = userID;
         this.userName = userName;
-        this.password = password;
+        this.userEmail = userEmail;
         this.admin = false;
     }
 
@@ -44,12 +49,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public boolean isAdmin() {
@@ -60,20 +65,12 @@ public class User {
         this.admin = admin;
     }
 
-    public List<Team> getFavoriteTeams() {
-        return favoriteTeams;
-    }
-
-    public void setFavoriteTeams(List<Team> favoriteTeams) {
-        this.favoriteTeams = favoriteTeams;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "userID=" + userID +
                 ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", admin=" + admin +
                 ", favoriteTeams=" + favoriteTeams +
                 '}';

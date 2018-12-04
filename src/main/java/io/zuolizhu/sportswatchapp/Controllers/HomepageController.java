@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomepageController {
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private TeamService teamService;
 
     @GetMapping("/")

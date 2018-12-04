@@ -26,8 +26,8 @@ public class SelectteamspageController {
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -80,15 +80,15 @@ public class SelectteamspageController {
     @PostMapping("/selectteams")
     public String selectteamsFormHandle(@RequestParam String formData) {
         // Handle returned value from form
-        String selectedteamsID[] = formData.split(",");
-        List<Team> favoriteTeams = new ArrayList<>();
-        // Save selected teams into a temp list
-        for (String s: selectedteamsID) {
-            Long teamID = Long.parseLong(s);
-            favoriteTeams.add(teamService.findByTeamID(teamID));
-        }
-        // Update selected teams in user repo
-        userService.updateUserFavoriteTeams(1L, favoriteTeams);
+//        String selectedteamsID[] = formData.split(",");
+//        List<Team> favoriteTeams = new ArrayList<>();
+//        // Save selected teams into a temp list
+//        for (String s: selectedteamsID) {
+//            Long teamID = Long.parseLong(s);
+//            favoriteTeams.add(teamService.findByTeamID(teamID));
+//        }
+//        // Update selected teams in user repo
+//        userService.updateUserFavoriteTeams(1L, favoriteTeams);
       return "redirect:";
     }
 }
