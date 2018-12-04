@@ -1,4 +1,4 @@
-package io.zuolizhu.sportswatchapp;
+package io.zuolizhu.sportswatchapp.DataLoader;
 
 import io.zuolizhu.sportswatchapp.Models.User;
 import io.zuolizhu.sportswatchapp.Repositories.UserRepository;

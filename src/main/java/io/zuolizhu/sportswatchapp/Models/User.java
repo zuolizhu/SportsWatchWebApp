@@ -16,7 +16,7 @@ public class User {
     private String userEmail;
     private boolean admin;
     private boolean blocked;
-    private ArrayList<String> favoriteTeams;
+    private ArrayList<Integer> favoriteTeams;
 
     public User() {
     }
@@ -69,11 +69,11 @@ public class User {
         this.blocked = blocked;
     }
 
-    public ArrayList<String> getFavoriteTeams() {
+    public ArrayList<Integer> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setFavoriteTeams(ArrayList<String> favoriteTeams) {
+    public void setFavoriteTeams(ArrayList<Integer> favoriteTeams) {
         this.favoriteTeams = favoriteTeams;
     }
 

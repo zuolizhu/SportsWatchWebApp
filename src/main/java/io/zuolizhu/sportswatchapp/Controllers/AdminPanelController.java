@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-
 @Controller
 public class AdminPanelController {
     @Autowired
@@ -19,8 +17,8 @@ public class AdminPanelController {
 
     @GetMapping("/admindash")
     public ModelAndView adminDashboard(HttpSession session, Model model) {
-        if (session.getAttribute("adminEmail") != null) {
-            String accessEmail = session.getAttribute("adminEmail").toString();
+        if (session.getAttribute("userEmail") != null) {
+            String accessEmail = session.getAttribute("userEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
                 if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
                     ModelAndView allUsers = new ModelAndView("admindash");

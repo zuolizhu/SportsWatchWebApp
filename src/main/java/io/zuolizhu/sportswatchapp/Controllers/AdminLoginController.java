@@ -18,7 +18,7 @@ public class AdminLoginController {
 
     @GetMapping("/adminlogin")
     public ModelAndView adminloginpageAccess(HttpSession session) {
-        if (session.getAttribute("adminEmail") != null) {
+        if (session.getAttribute("userEmail") != null) {
             String accessEmail = session.getAttribute("adminEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
                 if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
@@ -38,7 +38,7 @@ public class AdminLoginController {
     ) {
         if(userRepository.findByUserEmail(userEmail).isPresent()) {
             if (userRepository.findByUserEmail(userEmail).get().isAdmin()) {
-                session.setAttribute("adminEmail", userEmail);
+                session.setAttribute("userEmail", userEmail);
                 return new ModelAndView("redirect:admindash");
             }
             System.out.println("User [" + userName + "] tried to login to admin panel ...");
