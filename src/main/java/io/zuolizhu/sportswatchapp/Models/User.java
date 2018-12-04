@@ -15,25 +15,18 @@ public class User {
     private String userName;
     private String userEmail;
     private boolean admin;
+    private boolean blocked;
+    private ArrayList<String> favoriteTeams;
 
     public User() {
     }
-
-    public ArrayList<String> getFavoriteTeams() {
-        return favoriteTeams;
-    }
-
-    public void setFavoriteTeams(ArrayList<String> favoriteTeams) {
-        this.favoriteTeams = favoriteTeams;
-    }
-
-    private ArrayList<String> favoriteTeams;
 
     public User(Long userID, String userName, String userEmail) {
         this.userID = userID;
         this.userName = userName;
         this.userEmail = userEmail;
         this.admin = false;
+        this.blocked = false;
     }
 
     public Long getUserID() {
@@ -68,6 +61,22 @@ public class User {
         this.admin = admin;
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public ArrayList<String> getFavoriteTeams() {
+        return favoriteTeams;
+    }
+
+    public void setFavoriteTeams(ArrayList<String> favoriteTeams) {
+        this.favoriteTeams = favoriteTeams;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -75,6 +84,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", admin=" + admin +
+                ", blocked=" + blocked +
                 ", favoriteTeams=" + favoriteTeams +
                 '}';
     }

@@ -51,7 +51,7 @@
                     $("#userID").val(res.id);
                     $("#userName").val(res.name);
                     $("#userEmail").val(res.email);
-                    $("#signupForm").submit();
+                    $("#adminlogin").submit();
                 }
             })
         }
@@ -90,15 +90,13 @@
         scope="public_profile,email"
         onlogin="checkLoginState();">
         </fb:login-button>
-        <!--#### Facebook login button end ####-->
-        <p>Already have an account? <a th:herf="@{~/admin}">Click</a>to login!</p>
-        
+        <!--#### Facebook login button end ####--> 
     </div>
 
     
 
     <!--#### hidden form to send user id and user name to back end  ####-->
-    <form th:action="@{~/signup}" method="POST" id="signupForm">
+    <form th:action="@{~/adminlogin}" method="POST" id="adminlogin">
         <input type="hidden" name="userID" id="userID">
         <input type="hidden" name="userName" id="userName">
         <input type="hidden" name="userEmail" id="userEmail">

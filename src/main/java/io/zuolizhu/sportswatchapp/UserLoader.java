@@ -22,5 +22,11 @@ public class UserLoader implements CommandLineRunner {
         User admin = new User(2232074090372600L, "Biubiu Misaki", "misaki5960x@gmail.com");
         admin.setAdmin(true);
         userRepository.save(admin);
+
+        User user1 = new User(1121071010221601L, "Yu Hoshino", "hoshinoyu@gmail.com");
+        userRepository.save(user1);
+
+        User user2 = new User(1121071010221602L, "John Doe", "jd@gmail.com");
+        userRepository.save(user2);
     }
 }
