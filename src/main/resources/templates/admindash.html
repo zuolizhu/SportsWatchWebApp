@@ -7,7 +7,25 @@
 <body>
     <header th:replace="layout :: site-header" />
     <div class="container">
-        <p>Admin </p>
+        <h3>All Registered Users</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">User Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Block</th>
+                </tr>
+            </thead>
+            <tr th:each="u,iterStat : ${allusers}" >
+                    <td th:text="${u.userID}"></td>
+                    <td th:text="${u.userName}" ></td>
+                    <td th:text="${u.userEmail}" ></td>
+                    <td th:text="${u.blocked} ? 'Blocked':'Activated'" ></td>
+                    <td><a th:href="@{/changeStatus(userEmail=${u.userEmail})}" th:text="${u.blocked} ? 'Activate':'Block'" class="btn btn-primary"></a></td>
+                </tr>
+        </table>
 
     </div>
     <footer th:replace="layout :: site-footer" />
