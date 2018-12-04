@@ -19,6 +19,8 @@ public class UserLoader implements CommandLineRunner {
     }
 
     private void preloadUsers() {
-        User admin = new User(122131312312L, "Misaki Biubiu", "misaki5960x@gmail.com");
+        User admin = new User(2232074090372600L, "Biubiu Misaki", "misaki5960x@gmail.com");
+        admin.setAdmin(true);
+        userRepository.save(admin);
     }
 }

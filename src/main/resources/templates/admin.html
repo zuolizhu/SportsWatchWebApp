@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: site-head">
-    <title>Sports Watch Sign Up</title>
+    <title>Sports Watch Admin Login</title>
 </head>
 <body>
     <!--#### Facebook Login start ####-->
@@ -83,7 +83,7 @@
         <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
         <!--#### Facebook logout button end ####-->
 
-        <p> Click button below to sign up </p>
+        <p> Admin Login </p>
         <!--#### Facebook login button start ####-->
         <fb:login-button 
         id="fb-btn"
@@ -91,7 +91,7 @@
         onlogin="checkLoginState();">
         </fb:login-button>
         <!--#### Facebook login button end ####-->
-        <p>Already have an account? <a th:herf="@{~/login}">Click</a>to login!</p>
+        <p>Already have an account? <a th:herf="@{~/admin}">Click</a>to login!</p>
         
     </div>
 

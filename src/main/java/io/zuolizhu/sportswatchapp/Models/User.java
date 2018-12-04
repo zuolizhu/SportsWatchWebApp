@@ -16,6 +16,9 @@ public class User {
     private String userEmail;
     private boolean admin;
 
+    public User() {
+    }
+
     public ArrayList<String> getFavoriteTeams() {
         return favoriteTeams;
     }

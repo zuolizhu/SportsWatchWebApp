@@ -29,8 +29,8 @@ public class SelectteamspageController {
 //    @Autowired
 //    private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
 
     @GetMapping("/selectteams")
     public ModelAndView allTeams() {

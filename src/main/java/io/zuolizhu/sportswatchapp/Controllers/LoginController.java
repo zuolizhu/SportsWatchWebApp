@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @GetMapping("/login")
     public ModelAndView loginpageAccess(HttpSession session) {
-        System.out.println("Wait WAT??" + session.getAttribute("userID"));
         return new ModelAndView("login");
     }
 
@@ -22,7 +21,6 @@ public class LoginController {
             @RequestParam("userID") String userID,
             @RequestParam("userName") String userName
     ) {
-        System.out.println("Backend get: " + userID + " -- " + userName);
         return new ModelAndView("redirect:");
     }
 }
