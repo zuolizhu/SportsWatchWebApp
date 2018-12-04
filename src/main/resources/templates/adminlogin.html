@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: site-head">
-    <title>Sports Watch Sign Up</title>
+    <title>Sports Watch Admin Login</title>
 </head>
 <body>
     <!--#### Facebook Login start ####-->
@@ -51,7 +51,7 @@
                     $("#userID").val(res.id);
                     $("#userName").val(res.name);
                     $("#userEmail").val(res.email);
-                    $("#signupForm").submit();
+                    $("#adminlogin").submit();
                 }
             })
         }
@@ -83,22 +83,20 @@
         <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
         <!--#### Facebook logout button end ####-->
 
-        <p> Click button below to sign up </p>
+        <p> Admin Login </p>
         <!--#### Facebook login button start ####-->
         <fb:login-button 
         id="fb-btn"
         scope="public_profile,email"
         onlogin="checkLoginState();">
         </fb:login-button>
-        <!--#### Facebook login button end ####-->
-        <p>Already have an account? <a th:herf="@{~/login}">Click</a>to login!</p>
-        
+        <!--#### Facebook login button end ####--> 
     </div>
 
     
 
     <!--#### hidden form to send user id and user name to back end  ####-->
-    <form th:action="@{~/signup}" method="POST" id="signupForm">
+    <form th:action="@{~/adminlogin}" method="POST" id="adminlogin">
         <input type="hidden" name="userID" id="userID">
         <input type="hidden" name="userName" id="userName">
         <input type="hidden" name="userEmail" id="userEmail">

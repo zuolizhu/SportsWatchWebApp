@@ -1,7 +1,5 @@
 package io.zuolizhu.sportswatchapp.Controllers;
 
-import io.zuolizhu.sportswatchapp.Services.TeamService;
-import io.zuolizhu.sportswatchapp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +9,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomepageController {
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TeamService teamService;
-
     @GetMapping("/")
     public String homepage(Model model, HttpSession session) {
 

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,33 +12,38 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class LoginController {
+public class AdminLoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/login")
-    public ModelAndView userloginpage(HttpSession session) {
+    @GetMapping("/adminlogin")
+    public ModelAndView adminloginpageAccess(HttpSession session) {
         if (session.getAttribute("userEmail") != null) {
             String accessEmail = session.getAttribute("userEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
-                return new ModelAndView("redirect:selectteams");
+                if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                    return new ModelAndView("redirect:admindash");
+                }
             }
         }
-        return new ModelAndView("login");
+        return new ModelAndView("adminlogin");
     }
 
-    @PostMapping("/login")
-    public ModelAndView userloginrequest(
+    @PostMapping("/adminlogin")
+    public ModelAndView adminlogin(
+            @RequestParam("userName") String userName,
             @RequestParam("userEmail") String userEmail,
             HttpSession session,
             Model model
     ) {
         if(userRepository.findByUserEmail(userEmail).isPresent()) {
-            session.setAttribute("userEmail", userEmail);
-            return new ModelAndView("redirect:selectteams");
+            if (userRepository.findByUserEmail(userEmail).get().isAdmin()) {
+                session.setAttribute("userEmail", userEmail);
+                return new ModelAndView("redirect:admindash");
+            }
+            System.out.println("User [" + userName + "] tried to login to admin panel ...");
         }
-
-        String errorMessage = "Please register before login";
+        String errorMessage = userName + " is not a valid admin ...";
         model.addAttribute("errorMessage", errorMessage);
         return new ModelAndView("error");
     }

@@ -1,29 +1,21 @@
 package io.zuolizhu.sportswatchapp.Models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "teams")
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long teamID;
+    private Integer teamID;
     private String teamName;
-    private String teamNameAbbreviation;
-    public Team() {
-    }
+    private String city;
+    private String abbreviation;
 
-    public Team(Long teamID, String teamName, String teamNameAbbreviation) {
-        this.teamID = teamID;
-        this.teamName = teamName;
-        this.teamNameAbbreviation = teamNameAbbreviation;
-    }
-
-    public Long getTeamID() {
+    public Integer getTeamID() {
         return teamID;
     }
 
-    public void setTeamID(Long teamID) {
+    public void setTeamID(Integer teamID) {
         this.teamID = teamID;
     }
 
@@ -35,12 +27,20 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public String getTeamNameAbbreviation() {
-        return teamNameAbbreviation;
+    public String getCity() {
+        return city;
     }
 
-    public void setTeamNameAbbreviation(String teamNameAbbreviation) {
-        this.teamNameAbbreviation = teamNameAbbreviation;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     @Override
@@ -48,7 +48,8 @@ public class Team {
         return "Team{" +
                 "teamID=" + teamID +
                 ", teamName='" + teamName + '\'' +
-                ", teamNameAbbreviation='" + teamNameAbbreviation + '\'' +
+                ", city='" + city + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
                 '}';
     }
 }

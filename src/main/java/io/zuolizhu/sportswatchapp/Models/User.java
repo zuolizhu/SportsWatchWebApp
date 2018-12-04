@@ -13,19 +13,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
     private String userName;
-    private String password;
+    private String userEmail;
     private boolean admin;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Team> favoriteTeams = new ArrayList<>();
+    private boolean blocked;
+    private ArrayList<Integer> favoriteTeams;
 
     public User() {
     }
 
-    public User(String userName, String password) {
+    public User(Long userID, String userName, String userEmail) {
+        this.userID = userID;
         this.userName = userName;
-        this.password = password;
+        this.userEmail = userEmail;
         this.admin = false;
+        this.blocked = false;
     }
 
     public Long getUserID() {
@@ -44,12 +45,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public boolean isAdmin() {
@@ -60,11 +61,19 @@ public class User {
         this.admin = admin;
     }
 
-    public List<Team> getFavoriteTeams() {
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public ArrayList<Integer> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setFavoriteTeams(List<Team> favoriteTeams) {
+    public void setFavoriteTeams(ArrayList<Integer> favoriteTeams) {
         this.favoriteTeams = favoriteTeams;
     }
 
@@ -73,8 +82,9 @@ public class User {
         return "User{" +
                 "userID=" + userID +
                 ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", admin=" + admin +
+                ", blocked=" + blocked +
                 ", favoriteTeams=" + favoriteTeams +
                 '}';
     }

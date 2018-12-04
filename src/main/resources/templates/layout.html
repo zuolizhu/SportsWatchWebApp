@@ -28,6 +28,53 @@
   </head>
 
   <body>
+    <!--#### Facebook Login API Fragment ####-->
+    <div th:fragment="facebook-API">
+      <!--#### Facebook Login start ####-->
+      <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '430558230800886',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v3.2'
+            });
+
+            FB.getLoginStatus(function(response) {statusChangeCallback(response);});
+          };
+        
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+          function statusChangeCallback(res) {
+            if(res.status === 'connected') {
+              console.log(res);
+              console.log('Logged in and authed');
+            } else {
+              console.log('Not auth');
+            }
+          }
+
+          function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+              statusChangeCallback(response);
+          });
+          }
+
+          function logout() {
+            console.log('Log out has been called.');
+              FB.logout();
+          }
+      </script>
+      <!--#### Facebook login end ####-->
+    </div>
+    <!--#### Facebook Login API Fragment end ####-->
+
     <header th:fragment="site-header">
       <!-- ###### nav bar start ###### -->
       <div
@@ -56,8 +103,11 @@
             th:href="@{/teamsranking}"
             >Teams Ranking</a
           >
-          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}">Sign up</a>
-          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}">Log in</a>
+          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}" th:if="${session == null}">Sign up</a>
+          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}" th:if="${session == null}">Log in</a>
+          <a class="btn btn-outline-primary" href="adminlogin.html" th:href="@{/adminlogin}" th:if="${session == null}">Admin Log in</a>
+          <a class="btn btn-outline-primary" th:if="${session != null}" onclick="logout()">Log out</a>
+          
         </nav>
       </div>
       <!-- ###### nav bar end ###### -->
