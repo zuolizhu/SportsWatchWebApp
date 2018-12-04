@@ -6,11 +6,12 @@
 </head>
 
 <body>
+<div th:replace="layout :: facebook-API" />
 <header th:replace="layout :: site-header" />
 
 <div class="container">
     <h2>Choose your favorite teams</h2>
-    <form method="post">
+    <form id="teamsSelector" method="post">
         <select class="js-example-basic-multiple" name="formData" multiple="multiple" style="width: 60%">
             <option th:each="t : ${teams}" th:value="${t.teamID}" th:text="${t.City} + ' ' + ${t.teamName}"></option>
         </select>
@@ -30,7 +31,7 @@
             $('.js-example-basic-multiple').select2();
         });
         // Prevent empty form submission
-        $("form").submit(function (event) {
+        $("#teamsSelector").submit(function (event) {
             if ($('select').children(":selected").length == 0) {
                 alert("Please choose your favorite team!");
                 return false;

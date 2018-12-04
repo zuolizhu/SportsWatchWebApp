@@ -54,9 +54,7 @@
           function statusChangeCallback(res) {
             if(res.status === 'connected') {
               console.log(res);
-              console.log('Logged in and authed');
-            } else {
-              console.log('Not auth');
+              console.log('Logged in');
             }
           }
 
@@ -67,10 +65,17 @@
           }
 
           function logout() {
-            console.log('Log out has been called.');
-              FB.logout();
+              FB.logout(function(res){
+                $("#logoutCallToBackend").submit();
+              });
+              
           }
       </script>
+      <!--#### Hidden form calling backend to clear the session  ####-->
+      <form th:action="@{~/logout}" method="GET" id="logoutCallToBackend">
+      </form>
+      <!--#### End of Hidden Form  ####-->
+
       <!--#### Facebook login end ####-->
     </div>
     <!--#### Facebook Login API Fragment end ####-->
@@ -103,10 +108,10 @@
             th:href="@{/teamsranking}"
             >Teams Ranking</a
           >
-          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}" th:if="${session == null}">Sign up</a>
-          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}" th:if="${session == null}">Log in</a>
-          <a class="btn btn-outline-primary" href="adminlogin.html" th:href="@{/adminlogin}" th:if="${session == null}">Admin Log in</a>
-          <a class="btn btn-outline-primary" th:if="${session != null}" onclick="logout()">Log out</a>
+          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}" th:if="${session.userEmail == null}">Sign up</a>
+          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}" th:if="${session.userEmail == null}">Log in</a>
+          <a class="btn btn-outline-primary" href="adminlogin.html" th:href="@{/adminlogin}" th:if="${session.userEmail == null}">Admin Log in</a>
+          <a class="btn btn-outline-primary" th:if="${session.userEmail != null}" onclick="logout()">Log out</a>
           
         </nav>
       </div>
