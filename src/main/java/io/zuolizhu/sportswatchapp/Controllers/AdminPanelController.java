@@ -17,10 +17,16 @@ public class AdminPanelController {
     private UserRepository userRepository;
 
     @GetMapping("/admindash")
-    public ModelAndView adminDashboard() {
-        ModelAndView allUsers = new ModelAndView("admindash");
-        allUsers.addObject("allusers", userRepository.findAll());
-        return allUsers;
+    public ModelAndView adminDashboard(HttpSession session) {
+        String accessEmail = session.getAttribute("adminEmail").toString();
+        if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+            if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                ModelAndView allUsers = new ModelAndView("admindash");
+                allUsers.addObject("allusers", userRepository.findAll());
+                return allUsers;
+            }
+        }
+        return new ModelAndView("redirect:adminlogin");
     }
 
     @GetMapping("/changeStatus")
