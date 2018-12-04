@@ -67,14 +67,19 @@
     <div class="container">
         <p> Admin Login </p>
         <!--#### Facebook login button start ####-->
-            <p>
-                <fb:login-button
-                id="fb-btn"
-                scope="public_profile,email"
-                onlogin="checkLoginState();">
-                </fb:login-button>
-            </p>
-        <!--#### Facebook login button end ####--> 
+        <div 
+        class="fb-login-button"
+        id="fb-btn"
+        scope="public_profile,email"
+        onlogin="checkLoginState();"
+        data-max-rows="1" 
+        data-size="large" 
+        data-button-type="continue_with" 
+        data-show-faces="false" 
+        data-auto-logout-link="false" 
+        data-use-continue-as="false">
+        </div>
+        <!--#### Facebook login button end ####-->
     </div>
 
     
