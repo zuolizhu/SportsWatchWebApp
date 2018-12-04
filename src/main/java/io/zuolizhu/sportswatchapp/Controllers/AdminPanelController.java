@@ -24,12 +24,15 @@ public class AdminPanelController {
         return allUsers;
     }
 
-    @GetMapping("/")
+    @GetMapping("/changeStatus")
     public ModelAndView changeUserStatus(
             @RequestParam("userEmail") String userEmail
     ) {
-        ModelAndView targetUser = new ModelAndView("admindash");
-        User user = userRepository.findByUserEmail(userEmail);
-        return targetUser;
+        if(userRepository.findByUserEmail(userEmail).isPresent()) {
+            User user = userRepository.findByUserEmail(userEmail).get();
+            user.setBlocked(!(user.isBlocked()));
+            userRepository.save(user);
+        }
+        return new ModelAndView("redirect:admindash");
     }
 }
