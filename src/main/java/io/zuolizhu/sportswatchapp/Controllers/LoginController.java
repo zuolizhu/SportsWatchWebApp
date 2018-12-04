@@ -22,7 +22,7 @@ public class LoginController {
         if (session.getAttribute("userEmail") != null) {
             String accessEmail = session.getAttribute("userEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
-                return new ModelAndView("redirect:selectteams");
+                return new ModelAndView("redirect:userhome");
             }
         }
         return new ModelAndView("login");
@@ -36,7 +36,7 @@ public class LoginController {
     ) {
         if(userRepository.findByUserEmail(userEmail).isPresent()) {
             session.setAttribute("userEmail", userEmail);
-            return new ModelAndView("redirect:selectteams");
+            return new ModelAndView("redirect:userhome");
         }
 
         String errorMessage = "Please register before login";

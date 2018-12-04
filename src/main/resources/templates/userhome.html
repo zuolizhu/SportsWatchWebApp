@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Sports Watch User Home</title>
+</head>
+<body>
+    <div th:replace="layout :: facebook-API" />
+    <header th:replace="layout :: site-header" />
+    <div class="container">
+            <div>
+                <h3>Welcome! <span th:text="${userInfo.userName}"></span> !</h3>
+                <div th:if="${userInfo.favoriteTeams} == null">
+                    <p>Please choose your favorite teams!</p>
+                </div>
+                <div th:if="${userInfo.favoriteTeams} != null">
+                    <p>Your favorite teams:</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Abbreviation</th>
+                                <th scope="col">Team Name</th>
+                            </tr>
+                        </thead>
+                        <tr th:each="t,iterStat : ${teamsInfo}" >
+                                <td th:text="${t.abbreviation}"></td>
+                                <td th:text="${t.city} + ' ' + ${t.teamName}"></td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+
+    </div>
+    <footer th:replace="layout :: site-footer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

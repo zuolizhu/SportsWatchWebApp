@@ -59,7 +59,7 @@ public class SelectteamspageController {
                 User user = userRepository.findByUserEmail(accessEmail).get();
                 user.setFavoriteTeams(selectedTeams);
                 userRepository.save(user);
-                return new ModelAndView("redirect:");
+                return new ModelAndView("redirect:userhome");
             }
         }
 
