@@ -39,6 +39,7 @@ public class SelectteamspageController {
                 return allTeams;
             }
         }
+        System.out.println();
         return new ModelAndView("redirect:login");
     }
 

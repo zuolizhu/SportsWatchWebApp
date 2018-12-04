@@ -28,12 +28,10 @@
 
         function statusChangeCallback(res) {
           if(res.status === 'connected') {
-            setElements(true);
             testAPI();
             console.log(res);
             console.log('Logged in and authed');
           } else {
-            setElements(false);
             console.log('Not auth');
           }
         }
@@ -50,25 +48,15 @@
                     console.log(res);
                     $("#userID").val(res.id);
                     $("#userName").val(res.name);
+                    $("#userEmail").val(res.email);
                     $("#loginForm").submit();
                 }
             })
         }
-        
-        function setElements(isLoggedIn) {
-            if(isLoggedIn) {
-                document.getElementById('logout').style.display='block';
-                document.getElementById('fb-btn').style.display='none';
-            } else {
-                document.getElementById('logout').style.display='none';
-                document.getElementById('fb-btn').style.display='block';
-            }
-        }
+
 
         function logout() {
-            FB.logout(function(res) {
-                setElements(false);
-            });
+            FB.logout();
         }
     </script>
     <!--#### Facebook login end ####-->
@@ -79,9 +67,8 @@
 
     <div class="container">
 
-        <!--#### Facebook logout button start ####-->
-        <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
-        <!--#### Facebook logout button end ####-->
+        <p>Please login</p>
+
     </div>
 
     <!--#### Facebook login button start ####-->
@@ -96,6 +83,7 @@
     <form th:action="@{~/login}" method="POST" id="loginForm">
         <input type="hidden" name="userID" id="userID">
         <input type="hidden" name="userName" id="userName">
+        <input type="hidden" name="userEmail" id="userEmail">
     </form>
     <!--#### hidden form end ####-->
 

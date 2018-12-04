@@ -1,6 +1,9 @@
 package io.zuolizhu.sportswatchapp.Controllers;
 
+import io.zuolizhu.sportswatchapp.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,16 +14,33 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/login")
-    public ModelAndView loginpageAccess(HttpSession session) {
+    public ModelAndView userloginpage(HttpSession session) {
+        if (session.getAttribute("userEmail") != null) {
+            String accessEmail = session.getAttribute("userEmail").toString();
+            if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                return new ModelAndView("redirect:selectteams");
+            }
+        }
         return new ModelAndView("login");
     }
 
     @PostMapping("/login")
-    public ModelAndView userLogin(
-            @RequestParam("userID") String userID,
-            @RequestParam("userName") String userName
+    public ModelAndView userloginrequest(
+            @RequestParam("userEmail") String userEmail,
+            HttpSession session,
+            Model model
     ) {
-        return new ModelAndView("redirect:");
+        if(userRepository.findByUserEmail(userEmail).isPresent()) {
+            session.setAttribute("userEmail", userEmail);
+            return new ModelAndView("redirect:selectteams");
+        }
+
+        String errorMessage = "Please register before login";
+        model.addAttribute("errorMessage", errorMessage);
+        return new ModelAndView("error");
     }
 }

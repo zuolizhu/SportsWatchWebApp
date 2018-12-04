@@ -19,7 +19,7 @@ public class AdminLoginController {
     @GetMapping("/adminlogin")
     public ModelAndView adminloginpageAccess(HttpSession session) {
         if (session.getAttribute("userEmail") != null) {
-            String accessEmail = session.getAttribute("adminEmail").toString();
+            String accessEmail = session.getAttribute("userEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
                 if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
                     return new ModelAndView("redirect:admindash");
