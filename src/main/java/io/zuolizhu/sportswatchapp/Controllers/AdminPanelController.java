@@ -18,14 +18,17 @@ public class AdminPanelController {
 
     @GetMapping("/admindash")
     public ModelAndView adminDashboard(HttpSession session) {
-        String accessEmail = session.getAttribute("adminEmail").toString();
-        if (userRepository.findByUserEmail(accessEmail).isPresent()) {
-            if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
-                ModelAndView allUsers = new ModelAndView("admindash");
-                allUsers.addObject("allusers", userRepository.findAll());
-                return allUsers;
+        if (session.getAttribute("adminEmail") != null) {
+            String accessEmail = session.getAttribute("adminEmail").toString();
+            if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                    ModelAndView allUsers = new ModelAndView("admindash");
+                    allUsers.addObject("allusers", userRepository.findAll());
+                    return allUsers;
+                }
             }
         }
+        System.out.println("Null session");
         return new ModelAndView("redirect:adminlogin");
     }
 
