@@ -30,7 +30,7 @@
         </table>
         <div>
             <p>Add this team to your favorite</p>
-            <a th:href="@{~/addtofavorite?id=} + ${teamDetail.teamID}">Add</a>
+            <a class="btn btn-primary" th:href="@{~/addtofavorite?id=} + ${teamDetail.teamID}">Add</a>
         </div>
     </div>
     <footer th:replace="layout :: site-footer" />
