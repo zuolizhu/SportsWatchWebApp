@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: site-head">
-    <title>Sports Watch Login</title>
+    <title>Sports Watch Sign Up</title>
 </head>
 <body>
     <!--#### Facebook Login start ####-->
@@ -50,7 +50,7 @@
                     console.log(res);
                     $("#userID").val(res.id);
                     $("#userName").val(res.name);
-                    $("#loginForm").submit();
+                    $("#signupForm").submit();
                 }
             })
         }
@@ -58,14 +58,10 @@
         function setElements(isLoggedIn) {
             if(isLoggedIn) {
                 document.getElementById('logout').style.display='block';
-                document.getElementById('profile').style.display='block';
                 document.getElementById('fb-btn').style.display='none';
-                document.getElementById('heading').style.display='none';
             } else {
                 document.getElementById('logout').style.display='none';
-                document.getElementById('profile').style.display='none';
                 document.getElementById('fb-btn').style.display='block';
-                document.getElementById('heading').style.display='block';
             }
         }
 
@@ -82,22 +78,26 @@
     <!--#### Fragment header end ####-->
 
     <div class="container">
-
         <!--#### Facebook logout button start ####-->
         <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
         <!--#### Facebook logout button end ####-->
+
+        <p> Click button below to sign up </p>
+        <!--#### Facebook login button start ####-->
+        <fb:login-button 
+        id="fb-btn"
+        scope="public_profile,email"
+        onlogin="checkLoginState();">
+        </fb:login-button>
+        <!--#### Facebook login button end ####-->
+        <p>Already have an account? <a th:herf="@{~/login}">Click</a>to login!</p>
+        
     </div>
 
-    <!--#### Facebook login button start ####-->
-    <fb:login-button 
-    id="fb-btn"
-    scope="public_profile,email"
-    onlogin="checkLoginState();">
-    </fb:login-button>
-    <!--#### Facebook login button end ####-->
+    
 
     <!--#### hidden form to send user id and user name to back end  ####-->
-    <form th:action="@{~/login}" method="POST" id="loginForm">
+    <form th:action="@{~/signup}" method="POST" id="signupForm">
         <input type="hidden" name="userID" id="userID">
         <input type="hidden" name="userName" id="userName">
     </form>
