@@ -19,15 +19,19 @@ public class AdminPanelController {
 
     @GetMapping("/admindash")
     public ModelAndView adminDashboard(HttpSession session, Model model) {
-
-        ModelAndView allUsers = new ModelAndView("admindash");
-        allUsers.addObject("allusers", userRepository.findAll());
-
-
-//        String errorMessage = "Invalid session";
-//        model.addAttribute("errorMessage", errorMessage);
-//        return new ModelAndView("error");
-        return allUsers;
+        if (session.getAttribute("adminEmail") != null) {
+            String accessEmail = session.getAttribute("adminEmail").toString();
+            if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                    ModelAndView allUsers = new ModelAndView("admindash");
+                    allUsers.addObject("allusers", userRepository.findAll());
+                    return allUsers;
+                }
+            }
+        }
+        String errorMessage = "Invalid access, please login as an administrator!";
+        model.addAttribute("errorMessage", errorMessage);
+        return new ModelAndView("error");
     }
 
     @GetMapping("/changeStatus")

@@ -56,8 +56,10 @@
             th:href="@{/teamsranking}"
             >Teams Ranking</a
           >
-          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}">Sign up</a>
-          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}">Log in</a>
+          <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}" th:if="${session == null}">Sign up</a>
+          <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}" th:if="${session == null}">Log in</a>
+          <a class="btn btn-outline-primary" href="adminlogin.html" th:href="@{/adminlogin}" th:if="${session == null}">Admin Log in</a>
+          <a class="btn btn-outline-primary" th:href="@{/logout}" th:if="${session != null}">Log out</a>
         </nav>
       </div>
       <!-- ###### nav bar end ###### -->
