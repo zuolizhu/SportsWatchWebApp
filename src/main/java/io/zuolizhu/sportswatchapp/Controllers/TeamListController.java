@@ -14,6 +14,11 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 
+/**
+ * Code below referenced from https://github.com/ninadpchaudhari/spring-boot-consume-rest-endpoint
+ * Author of the code below is @ninadpchaudhari
+ */
+
 @Controller
 public class TeamListController {
     @GetMapping("/allteams")
@@ -43,6 +48,10 @@ public class TeamListController {
         return allTeams;
     }
 
+    /**
+     * Code below referenced from https://github.com/ninadpchaudhari/spring-boot-consume-rest-endpoint
+     * Author of the code below is @ninadpchaudhari
+     */
     @GetMapping("/team")
     public ModelAndView getTeamInfo(@RequestParam("id") String teamID) {
         ModelAndView teamInfo = new ModelAndView("teamInfo");

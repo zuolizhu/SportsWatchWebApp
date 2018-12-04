@@ -22,14 +22,18 @@ public class AdminLoginController {
 
     @PostMapping("/adminlogin")
     public ModelAndView userLogin(
-            @RequestParam("userID") String userID,
             @RequestParam("userName") String userName,
-            @RequestParam("userName") String userEmail
+            @RequestParam("userName") String userEmail,
+            HttpSession session
     ) {
-        if(userRepository.findByUserName(userName).isAdmin()) {
-            return new ModelAndView("redirect:admindash");
+        if(userRepository.findByUserEmail(userEmail).isPresent()) {
+            if (userRepository.findByUserEmail(userEmail).get().isAdmin()) {
+                session.setAttribute("adminEmail", userEmail);
+                return new ModelAndView("redirect:admindash");
+            }
+            System.out.println("User [" + userName + "] tried to login to admin panel...");
         }
-        System.out.println("User [" + userName + "] tried to login to admin panel...");
+
         return new ModelAndView("redirect:login");
     }
 }
