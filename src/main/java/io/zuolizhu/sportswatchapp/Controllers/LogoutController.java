@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 public class LogoutController {
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
-        session.removeAttribute("adminEmail");
         return new ModelAndView("redirect:");
     }
 }
