@@ -68,17 +68,18 @@
     <div class="container">
 
         <p>Please login</p>
-
-    </div>
-
     <!--#### Facebook login button start ####-->
-    <fb:login-button 
-    id="fb-btn"
-    scope="public_profile,email"
-    onlogin="checkLoginState();">
-    </fb:login-button>
+    <p>
+        <fb:login-button
+        id="fb-btn"
+        scope="public_profile,email"
+        onlogin="checkLoginState();">
+        </fb:login-button>
+    </p>
     <!--#### Facebook login button end ####-->
 
+
+    </div>
     <!--#### hidden form to send user id and user name to back end  ####-->
     <form th:action="@{~/login}" method="POST" id="loginForm">
         <input type="hidden" name="userID" id="userID">

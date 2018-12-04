@@ -28,12 +28,10 @@
 
         function statusChangeCallback(res) {
           if(res.status === 'connected') {
-            setElements(true);
             testAPI();
             console.log(res);
-            console.log('Logged in and authed');
+            console.log('Admin logged in');
           } else {
-            setElements(false);
             console.log('Not auth');
           }
         }
@@ -55,21 +53,9 @@
                 }
             })
         }
-        
-        function setElements(isLoggedIn) {
-            if(isLoggedIn) {
-                document.getElementById('logout').style.display='block';
-                document.getElementById('fb-btn').style.display='none';
-            } else {
-                document.getElementById('logout').style.display='none';
-                document.getElementById('fb-btn').style.display='block';
-            }
-        }
 
         function logout() {
-            FB.logout(function(res) {
-                setElements(false);
-            });
+            FB.logout();
         }
     </script>
     <!--#### Facebook login end ####-->
@@ -79,17 +65,15 @@
     <!--#### Fragment header end ####-->
 
     <div class="container">
-        <!--#### Facebook logout button start ####-->
-        <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
-        <!--#### Facebook logout button end ####-->
-
         <p> Admin Login </p>
         <!--#### Facebook login button start ####-->
-        <fb:login-button 
-        id="fb-btn"
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-        </fb:login-button>
+            <p>
+                <fb:login-button
+                id="fb-btn"
+                scope="public_profile,email"
+                onlogin="checkLoginState();">
+                </fb:login-button>
+            </p>
         <!--#### Facebook login button end ####--> 
     </div>
 

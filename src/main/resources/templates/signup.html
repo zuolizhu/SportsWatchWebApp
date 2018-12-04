@@ -17,7 +17,7 @@
 
           FB.getLoginStatus(function(response) {statusChangeCallback(response);});
         };
-      
+
         (function(d, s, id){
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) {return;}
@@ -55,7 +55,7 @@
                 }
             })
         }
-        
+
         function setElements(isLoggedIn) {
             if(isLoggedIn) {
                 document.getElementById('logout').style.display='block';
@@ -79,23 +79,20 @@
     <!--#### Fragment header end ####-->
 
     <div class="container">
-        <!--#### Facebook logout button start ####-->
-        <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
-        <!--#### Facebook logout button end ####-->
-
         <p> Click button below to sign up </p>
         <!--#### Facebook login button start ####-->
-        <fb:login-button 
-        id="fb-btn"
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-        </fb:login-button>
+        <p>
+            <fb:login-button
+            id="fb-btn"
+            scope="public_profile,email"
+            onlogin="checkLoginState();">
+            </fb:login-button>
+        </p>
         <!--#### Facebook login button end ####-->
-        <p>Already have an account? <a th:herf="@{~/login}">Click</a>to login!</p>
-        
+
     </div>
 
-    
+
 
     <!--#### hidden form to send user id and user name to back end  ####-->
     <form th:action="@{~/signup}" method="POST" id="signupForm">
