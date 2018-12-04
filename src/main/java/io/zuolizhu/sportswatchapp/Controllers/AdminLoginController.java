@@ -3,6 +3,7 @@ package io.zuolizhu.sportswatchapp.Controllers;
 import io.zuolizhu.sportswatchapp.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,24 +17,34 @@ public class AdminLoginController {
     private UserRepository userRepository;
 
     @GetMapping("/adminlogin")
-    public ModelAndView loginpageAccess(HttpSession session) {
+    public ModelAndView adminloginpageAccess(HttpSession session) {
+        if (session.getAttribute("adminEmail") != null) {
+            String accessEmail = session.getAttribute("adminEmail").toString();
+            if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                    return new ModelAndView("redirect:admindash");
+                }
+            }
+        }
         return new ModelAndView("adminlogin");
     }
 
     @PostMapping("/adminlogin")
-    public ModelAndView userLogin(
+    public ModelAndView adminlogin(
             @RequestParam("userName") String userName,
-            @RequestParam("userName") String userEmail,
-            HttpSession session
+            @RequestParam("userEmail") String userEmail,
+            HttpSession session,
+            Model model
     ) {
         if(userRepository.findByUserEmail(userEmail).isPresent()) {
             if (userRepository.findByUserEmail(userEmail).get().isAdmin()) {
                 session.setAttribute("adminEmail", userEmail);
                 return new ModelAndView("redirect:admindash");
             }
-            System.out.println("User [" + userName + "] tried to login to admin panel...");
+            System.out.println("User [" + userName + "] tried to login to admin panel ...");
         }
-
-        return new ModelAndView("redirect:login");
+        String errorMessage = userName + " is not a valid admin ...";
+        model.addAttribute("errorMessage", errorMessage);
+        return new ModelAndView("error");
     }
 }
