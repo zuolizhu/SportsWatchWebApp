@@ -9,20 +9,39 @@
     <header th:replace="layout :: site-header" />
     <div class="container">
         <div>
-            <h3>Team: <span th:text="${teamDetail.city} +' ' + ${teamDetail.teamName}"></span></h3>
+            <h4>Team: <span th:text="${teamDetail.city} +' ' + ${teamDetail.teamName}"></span></h3>
+            <div>
+                <p>Wins and Losses of this team</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Record</th>
+                            <th scope="col">VS Team</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tr th:each="gameDetail,iterStat : ${gameDetails}" >
+                            <td th:text="${gameDetail.get('wins')} == 1 ? 'Win' : 'Loss'"></td>
+                            <td th:text="${gameDetail.get('awayTeam')}" > </td>
+                            <td th:text="${gameDetail.get('date')}" >  </td>
+                            <td th:text="${gameDetail.get('time')}" >  </td>
+                        </tr>
+                </table>
+            </div>  
         </div>
+
+
         <p>Schedules of games for the latest season</p>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
                     <th scope="col">Away team</th>
                 </tr>
             </thead>
             <tr th:each="gameDetail,iterStat : ${gameDetails}" >
-                    <td th:text="${gameDetail.get('id')}">
                     <td th:text="${gameDetail.get('date')}" >  </td>
                     <td th:text="${gameDetail.get('time')}" >  </td>
                     <td th:text="${gameDetail.get('awayTeam')}" >  </td>

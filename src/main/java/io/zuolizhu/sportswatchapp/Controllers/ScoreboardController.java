@@ -20,7 +20,6 @@ public class ScoreboardController {
         ArrayList<HashMap<String, String>> scores = fetchScoreboard();
         ModelAndView scoreboard = new ModelAndView("scoreboard");
         scoreboard.addObject("scoreboard", scores);
-        System.out.println(scores.toString());
         return scoreboard;
     }
 
@@ -54,7 +53,6 @@ public class ScoreboardController {
                 gameScores.forEach(gameLog -> {
                     JsonNode game = gameLog.get("game");
                     HashMap<String, String> gameDetail = new HashMap<>();
-                    gameDetail.put("ID", game.get("ID").asText());
                     gameDetail.put("date", game.get("date").asText());
                     gameDetail.put("time", game.get("time").asText());
                     gameDetail.put("awayTeam", game.get("awayTeam").get("Abbreviation").asText());

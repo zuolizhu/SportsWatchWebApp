@@ -29,8 +29,16 @@ public class TeamListController {
     @GetMapping("/allteams")
     public ModelAndView getTeams() {
         ModelAndView allTeams = new ModelAndView("allteams");
-        allTeams.addObject("name", "Human");
+        // Get all team standings from API
+        ResponseEntity<TeamStanding> response = fetchTeamStandings();
+        TeamStanding teamStanding = response.getBody();
 
+        // Send the mapped teamStanding object to view
+        allTeams.addObject("teamStandingEntries", teamStanding.getOverallteamstandings().getTeamstandingsentries());
+        return allTeams;
+    }
+
+    private ResponseEntity<TeamStanding> fetchTeamStandings() {
         // API endpoint
         String url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/overall_team_standings.json";
 
@@ -45,12 +53,7 @@ public class TeamListController {
 
         // Calling the API and map the response json
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<TeamStanding> response = restTemplate.exchange(url, HttpMethod.GET, request, TeamStanding.class);
-        TeamStanding teamStanding = response.getBody();
-
-        // Send the mapped teamStanding object to view
-        allTeams.addObject("teamStandingEntries", teamStanding.getOverallteamstandings().getTeamstandingsentries());
-        return allTeams;
+        return restTemplate.exchange(url, HttpMethod.GET, request, TeamStanding.class);
     }
 
     /**
@@ -62,11 +65,11 @@ public class TeamListController {
         ModelAndView teamInfo = new ModelAndView("teamInfo");
         ArrayList<HashMap<String, String>> gameDetails = fetchGameDetails(teamID);
 
-
-
-
-        teamInfo.addObject("gameDetails", gameDetails);
+        // Team information
         teamInfo.addObject("teamDetail", teamRepository.findTeamByTeamID(Integer.parseInt(teamID)));
+        // Team schedules for the latest season
+        teamInfo.addObject("gameDetails", gameDetails);
+
         return teamInfo;
     }
 
@@ -94,13 +97,15 @@ public class TeamListController {
             JsonNode root = mapper.readTree(str);
             JsonNode gamelogs = root.get("teamgamelogs").get("gamelogs");
             if (gamelogs.isArray()) {
-                gamelogs.forEach(gamelog -> {
-                    JsonNode game = gamelog.get("game");
+                gamelogs.forEach(gameLog -> {
+                    JsonNode game = gameLog.get("game");
                     HashMap<String, String> gameDetail = new HashMap<>();
                     gameDetail.put("id", game.get("id").asText());
                     gameDetail.put("date", game.get("date").asText());
                     gameDetail.put("time", game.get("time").asText());
                     gameDetail.put("awayTeam", game.get("awayTeam").get("Abbreviation").asText());
+                    gameDetail.put("wins", gameLog.get("stats").get("Wins").get("#text").asText());
+                    gameDetail.put("losses", gameLog.get("stats").get("Losses").get("#text").asText());
                     gameDetails.add(gameDetail);
                 });
             }

@@ -14,7 +14,6 @@
                 <thead>
                 <tr>
                 <th scope="col">Home team</th>
-                <th scope="col"> </th>
                 <th scope="col">Away team</th>
                 <th scope="col">Score</th>
                   <th scope="col">Date</th>
@@ -24,10 +23,9 @@
                 </tr>
               </thead>
                     <tr th:each="sb : ${scoreboard}" >
-                        <td><a th:href="@{~/team?id=} + ${sb.get('homeID')}" th:text="${sb.get('homeTeam')}"> </a></td>
-                        <td> VS </td>
-                        <td><a th:href="@{~/team?id=} + ${sb.get('awayID')}" th:text="${sb.get('awayTeam')}"> </a></td>
-                        <td th:text="${sb.get('homeScore')}+' - ' +${sb.get('awayScore')}" >  </td>
+                        <td th:text="${sb.get('homeTeam')}"></td>
+                        <td th:text="${sb.get('awayTeam')}"></td>
+                        <td th:text="${sb.get('homeScore')}+' - ' +${sb.get('awayScore')}" ></td>
                          <td th:text="${sb.get('date')}" >  </td>
                           <td th:text="${sb.get('time')}" >  </td>
                           <td th:text="${sb.get('homeCity')}" > </td>
