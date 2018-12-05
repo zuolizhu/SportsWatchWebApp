@@ -9,3 +9,18 @@
 li:nth-child(6) {
     list-style-type: none; 
  }
+
+ a{
+    color: #fb1767;
+    /* display: inline-block; */
+    text-decoration: none;
+    background-image: linear-gradient(to right, #fb1767, #006cff);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 35% 2px;
+    transition: background-size .5s ease;
+}
+a:hover {
+    text-decoration: none;
+    background-size: 100% 2px;
+}
