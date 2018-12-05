@@ -60,8 +60,19 @@ public class TeamListController {
     @GetMapping("/team")
     public ModelAndView getTeamInfo(@RequestParam("id") String teamID) {
         ModelAndView teamInfo = new ModelAndView("teamInfo");
-        ArrayList<HashMap<String, String>> gameDetails = new ArrayList<>();
+        ArrayList<HashMap<String, String>> gameDetails = fetchGameDetails(teamID);
 
+
+
+
+        teamInfo.addObject("gameDetails", gameDetails);
+        teamInfo.addObject("teamDetail", teamRepository.findTeamByTeamID(Integer.parseInt(teamID)));
+        return teamInfo;
+    }
+
+    private ArrayList<HashMap<String, String>> fetchGameDetails(@RequestParam("id") String teamID) {
+
+        ArrayList<HashMap<String, String>> gameDetails = new ArrayList<>();
         // API endpoint
         String url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/team_gamelogs.json?team=" + teamID;
 
@@ -96,8 +107,6 @@ public class TeamListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        teamInfo.addObject("gameDetails", gameDetails);
-        teamInfo.addObject("teamDetail", teamRepository.findTeamByTeamID(Integer.parseInt(teamID)));
-        return teamInfo;
+        return gameDetails;
     }
 }
