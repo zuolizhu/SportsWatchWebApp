@@ -24,3 +24,15 @@ a:hover {
     text-decoration: none;
     background-size: 100% 2px;
 }
+
+.container {
+    max-width: 960px;
+}
+
+.card-deck .card {
+    min-width: 220px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
