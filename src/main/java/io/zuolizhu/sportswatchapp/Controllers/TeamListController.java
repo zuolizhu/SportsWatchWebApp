@@ -70,7 +70,7 @@ public class TeamListController {
         return teamInfo;
     }
 
-    private ArrayList<HashMap<String, String>> fetchGameDetails(@RequestParam("id") String teamID) {
+    private ArrayList<HashMap<String, String>> fetchGameDetails(String teamID) {
 
         ArrayList<HashMap<String, String>> gameDetails = new ArrayList<>();
         // API endpoint
