@@ -6,6 +6,23 @@
     display: none;
 }
 
+body, html {
+    height: 100%;
+}
+
+.homepagebanner { 
+    /* The image used */
+    background-image: url("/images/banner1.jpg");
+
+    /* Full height */
+    height: 60%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 li:nth-child(6) {
     list-style-type: none; 
  }
@@ -23,16 +40,4 @@ li:nth-child(6) {
 a:hover {
     text-decoration: none;
     background-size: 100% 2px;
-}
-
-.container {
-    max-width: 960px;
-}
-
-.card-deck .card {
-    min-width: 220px;
-}
-
-.pricing-header {
-    max-width: 700px;
 }
