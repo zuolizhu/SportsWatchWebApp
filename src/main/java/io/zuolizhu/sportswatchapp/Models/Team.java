@@ -10,6 +10,8 @@ public class Team {
     private String teamName;
     private String city;
     private String abbreviation;
+    private int wins;
+    private int losses;
 
     public Integer getTeamID() {
         return teamID;
@@ -43,6 +45,22 @@ public class Team {
         this.abbreviation = abbreviation;
     }
 
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
     @Override
     public String toString() {
         return "Team{" +
@@ -50,6 +68,8 @@ public class Team {
                 ", teamName='" + teamName + '\'' +
                 ", city='" + city + '\'' +
                 ", abbreviation='" + abbreviation + '\'' +
+                ", wins=" + wins +
+                ", losses=" + losses +
                 '}';
     }
 }
