@@ -29,15 +29,13 @@ public class SignupController {
             @RequestParam("userName") String userName,
             @RequestParam("userEmail") String userEmail
     ) {
-        System.out.println("Backend get: " + userID + " -- " + userName + " -- " + userEmail);
-
         // If this user does not exist in the database
         // Add this user into database
         if (!userRepository.findByUserEmail(userEmail).isPresent()) {
             Long longUserID = new Long(userID);
             User newRegisteredUser = new User(longUserID, userName, userEmail);
             userRepository.save(newRegisteredUser);
-            return new ModelAndView("redirect:");
+            return new ModelAndView("redirect:login");
         }
 
         return new ModelAndView("redirect:login");
