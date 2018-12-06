@@ -13,6 +13,10 @@
                 <div th:if="${userInfo.favoriteTeams} == null">
                     <p>Please choose your favorite teams!</p>
                 </div>
+
+                <div th:if="${messages} != null">
+                    <p th:each="m : ${messages}" th:text="${m}"></p>
+                </div>
                 <div th:if="${userInfo.favoriteTeams} != null">
                     <p>Your favorite teams:</p>
                     <table class="table">

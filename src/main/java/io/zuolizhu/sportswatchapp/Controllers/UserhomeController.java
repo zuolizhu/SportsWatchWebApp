@@ -40,6 +40,9 @@ public class UserhomeController {
                 if (getUserFavoriteTeams(currentUser.getFavoriteTeams()) != null) {
                     if (!getUserFavoriteTeams(currentUser.getFavoriteTeams()).isEmpty()) {
                         ArrayList<String> messages = updateMessages(getUserFavoriteTeams(currentUser.getFavoriteTeams()));
+//                        ArrayList<String> messages = new ArrayList<>();
+//                        messages.add("Test 1");
+//                        messages.add("test 2");
                         userHome.addObject("messages", messages);
                         userHome.addObject("teamsInfo", getUserFavoriteTeams(currentUser.getFavoriteTeams()));
                     }
