@@ -5,12 +5,12 @@ Ideally keep the [application.properties](https://github.com/zuolizhu/SportsWatc
 ```javascript
 spring.jpa.database-platform=org.hibernate.dialect.MySQL5Dialect
 spring.jpa.hibernate.ddl-auto=create-drop
-spring.datasource.url=jdbc:mysql://localhost:3306/dbname
+spring.datasource.url=jdbc:mysql://localhost:3306/${dbname}
 spring.datasource.username=${DB_USER}
 spring.datasource.password=${DB_PASSWD}
 ```
 
-And also, in order to make sure Facebook Login API works, please change you app id.
+And also, in order to make sure Facebook Login API works, please change your app id.
 
 ```javascript
 FB.init({
