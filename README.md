@@ -25,15 +25,15 @@ FB.init({
 
 #### Screenshots
 
-![Screen Shot 2018-12-06 at 9.09.47 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.09.47 AM.png)
+![Screen Shot 2018-12-06 at 9.09.47 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.09.47%20AM.png)
 
-![Screen Shot 2018-12-06 at 9.10.08 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.10.08 AM.png)
+![Screen Shot 2018-12-06 at 9.10.08 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.10.08%20AM.png)
 
-![Screen Shot 2018-12-06 at 9.10.24 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.10.24 AM.png)
+![Screen Shot 2018-12-06 at 9.10.24 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.10.24%20AM.png)
 
-![Screen Shot 2018-12-06 at 9.10.38 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.10.38 AM.png)
+![Screen Shot 2018-12-06 at 9.10.38 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.10.38%20AM.png)
 
-![Screen Shot 2018-12-06 at 9.11.21 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.11.21 AM.png)
+![Screen Shot 2018-12-06 at 9.11.21 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.11.21%20AM.png)
 
-![Screen Shot 2018-12-06 at 9.12.47 AM](/Users/slipper/Documents/GitHub/SportsWatchWebApp/screenshots/Screen Shot 2018-12-06 at 9.12.47 AM.png)
+![Screen Shot 2018-12-06 at 9.12.47 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.12.47%20AM.png)
 
