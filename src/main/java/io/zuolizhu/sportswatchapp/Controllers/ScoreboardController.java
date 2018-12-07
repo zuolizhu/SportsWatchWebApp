@@ -24,6 +24,8 @@ public class ScoreboardController {
     }
 
     private ArrayList<HashMap<String, String>> fetchScoreboard() {
+        // In case of null data fetched from API, I set up the date manually.
+        // uncomment code below to get real time date
         // Fetch current time
         // The date is hardcoded, purchase account required to get real time update
 //        LocalDateTime currentTime = LocalDateTime.now();

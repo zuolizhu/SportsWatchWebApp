@@ -111,6 +111,12 @@
             th:href="@{/teamsranking}"
             >Teams Ranking</a
           >
+          <a
+            class="p-2 text-dark"
+            href="userhome.html"
+            th:href="@{/userhome}"
+          >User Home</a
+          >
           <a class="btn btn-outline-primary" href="signup.html" th:href="@{/signup}" th:if="${session.userEmail == null}">Sign up</a>
           <a class="btn btn-outline-primary" href="login.html" th:href="@{/login}" th:if="${session.userEmail == null}">Log in</a>
           <a class="btn btn-outline-primary" href="adminlogin.html" th:href="@{/adminlogin}" th:if="${session.userEmail == null}">Admin Log in</a>

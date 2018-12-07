@@ -70,7 +70,6 @@ public class TeamListController {
         teamInfo.addObject("teamDetail", teamRepository.findTeamByTeamID(Integer.parseInt(teamID)));
         // Team schedules for the latest season
         teamInfo.addObject("gameDetails", gameDetails);
-
         return teamInfo;
     }
 

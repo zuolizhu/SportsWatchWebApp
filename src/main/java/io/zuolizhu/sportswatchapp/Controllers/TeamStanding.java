@@ -19,38 +19,9 @@ class team{
 }
 
 @Data
-class Wins{
-    @JsonProperty("@category")
-    String category;
-    @JsonProperty("@abbreviation")
-    String abbreviation;
-    @JsonProperty("#text")
-    String wingames;
-}
-
-@Data
-class Losses{
-    @JsonProperty("@category")
-    String category;
-    @JsonProperty("@abbreviation")
-    String abbreviation;
-    @JsonProperty("#text")
-    String lossgames;
-}
-
-@Data
-class stats{
-    @JsonProperty("Wins")
-    Wins Wins;
-    @JsonProperty("Losses")
-    Losses Losses;
-}
-
-@Data
 class teamstandingsentry{
     team team;
     Long rank;
-    stats stats;
 }
 
 @Data
