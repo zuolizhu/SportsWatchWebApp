@@ -10,6 +10,7 @@
     <div class="container">
         <div>
             <h4>Team: <span th:text="${teamDetail.city} +' ' + ${teamDetail.teamName}"></span></h3>
+                <img th:src="@{'/images/teamlogos/' + ${teamDetail.abbreviation} + '.png'}"/>
             <div>
                 <p>Wins and Losses of this team</p>
                 <table class="table">
