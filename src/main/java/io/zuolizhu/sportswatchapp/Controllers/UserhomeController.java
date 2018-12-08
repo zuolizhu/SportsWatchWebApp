@@ -34,6 +34,9 @@ public class UserhomeController {
         if (session.getAttribute("userEmail") != null) {
             String accessEmail = session.getAttribute("userEmail").toString();
             if (userRepository.findByUserEmail(accessEmail).isPresent()) {
+                if (userRepository.findByUserEmail(accessEmail).get().isAdmin()) {
+                    return new ModelAndView("redirect:admindash");
+                }
                 User currentUser = userRepository.findByUserEmail(accessEmail).get();
                 ModelAndView userHome = new ModelAndView("userhome");
                 userHome.addObject("userInfo", currentUser);
