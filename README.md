@@ -25,6 +25,10 @@ FB.init({
 
 #### Screenshots
 
+#### - UML Diagram
+
+![UML Diagram](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/umldiagram.png)
+
 #### - Homepage
 
 ![Screen Shot 2018-12-06 at 9.09.47 AM](https://github.com/zuolizhu/SportsWatchWebApp/blob/master/screenshots/Screen%20Shot%202018-12-06%20at%209.09.47%20AM.png)
